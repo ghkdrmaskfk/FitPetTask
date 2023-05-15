@@ -1,0 +1,87 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
+    id("de.mannodermaus.android-junit5") version "1.8.2.1"
+}
+
+android {
+    namespace 'com.hoon.fitpettask'
+    compileSdk 33
+    defaultConfig {
+        applicationId "com.hoon.fitpettask"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    implementation project(":data")
+    implementation project(":domain")
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // JUnit5
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+
+    // mockito 3
+    testImplementation 'org.mockito:mockito-core:3.2.0'
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
+    // hilt
+    implementation 'com.google.dagger:hilt-android:2.44'
+    kapt 'com.google.dagger:hilt-compiler:2.44'
+
+    // coroutine
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
+    // retrofit2
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+
+    // okHttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+    // gson
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    // gson converter
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    // ktx
+    implementation("androidx.activity:activity-ktx:1.6.1")
+    implementation("androidx.fragment:fragment-ktx:1.5.5")
+
+    // paging
+    implementation "androidx.paging:paging-runtime:3.1.1"
+}
